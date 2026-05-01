@@ -7,12 +7,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #d32f2f; /* أحمر داكن احترافي */
-            --bg-dark: #0a0a0a;
-            --bg-card: #141414;
+            --primary-color: #f59e0b; /* ذهبي مائل للبرتقالي */
+            --primary-hover: #d97706;
+            --bg-dark: #0a1128; /* كحلي داكن */
+            --bg-card: #121e3f; /* كحلي للبطاقات */
             --text-light: #ffffff;
-            --text-muted: #9e9e9e;
-            --accent: #ffb300; /* لمسة ذهبية لقطاع الفنادق */
+            --text-muted: #cbd5e1;
+            --accent: #fbbf24;
         }
 
         * {
@@ -29,7 +30,7 @@
             line-height: 1.7;
         }
 
-        /* Hero Section */
+        /* Hero Section with Video Background */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -38,13 +39,31 @@
             justify-content: center;
             text-align: center;
             padding: 20px;
-            background: linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.95));
-            border-bottom: 2px solid var(--primary-color);
+            overflow: hidden;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .video-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: 0;
+            opacity: 0.4; /* تعتيم الفيديو ليظهر النص */
         }
 
         .hero-content {
             z-index: 2;
             max-width: 900px;
+            background: rgba(10, 17, 40, 0.6); /* تأثير زجاجي كحلي */
+            backdrop-filter: blur(10px);
+            padding: 50px 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(245, 158, 11, 0.2);
             animation: fadeIn 1.5s ease-out;
         }
 
@@ -53,7 +72,6 @@
             font-weight: 900;
             margin-bottom: 20px;
             line-height: 1.3;
-            letter-spacing: -1px;
         }
 
         .hero h1 span {
@@ -69,22 +87,61 @@
         .btn {
             display: inline-block;
             background-color: var(--primary-color);
-            color: white;
+            color: #0a1128;
             padding: 16px 45px;
             font-size: 1.2rem;
-            font-weight: bold;
+            font-weight: 900;
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 8px;
             transition: all 0.3s ease;
             cursor: pointer;
-            border: 1px solid transparent;
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
         }
 
         .btn:hover {
             background-color: transparent;
-            border-color: var(--primary-color);
             color: var(--primary-color);
-            box-shadow: 0 0 15px rgba(211, 47, 47, 0.3);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+        }
+
+        /* Video Showcase Section */
+        .showcase {
+            padding: 80px 20px;
+            background-color: #0d1733;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video-card {
+            background: var(--bg-card);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .video-card video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .video-card .info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .video-card h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
         }
 
         /* Specs Section */
@@ -103,8 +160,6 @@
 
         .section-title span {
             color: var(--primary-color);
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 5px;
         }
 
         .grid {
@@ -116,20 +171,20 @@
         .card {
             background-color: var(--bg-card);
             padding: 40px 30px;
-            border-radius: 8px;
+            border-radius: 12px;
             text-align: center;
-            border-top: 3px solid var(--text-muted);
+            border-bottom: 4px solid var(--primary-color);
             transition: all 0.4s ease;
         }
 
         .card:hover {
             transform: translateY(-10px);
-            border-top-color: var(--accent);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            background-color: #17264f;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
         }
 
         .card h3 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             margin-bottom: 15px;
             color: var(--text-light);
         }
@@ -141,18 +196,18 @@
 
         /* Form Section */
         .contact-section {
-            background-color: #111;
+            background-color: #070d1f;
             padding: 100px 20px;
-            border-top: 1px solid #222;
+            border-top: 1px solid #1a295c;
         }
 
         .form-container {
             max-width: 650px;
             margin: 0 auto;
-            background-color: var(--bg-dark);
+            background-color: var(--bg-card);
             padding: 50px;
-            border-radius: 8px;
-            border: 1px solid #333;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
         }
 
         .form-container p {
@@ -170,37 +225,37 @@
             display: block;
             margin-bottom: 10px;
             font-weight: bold;
-            color: #ddd;
+            color: var(--accent);
         }
 
         .form-group input, .form-group select {
             width: 100%;
             padding: 16px;
-            border: 1px solid #444;
-            background-color: #1a1a1a;
+            border: 1px solid #2a3b6b;
+            background-color: #0a1128;
             color: white;
-            border-radius: 4px;
+            border-radius: 8px;
             font-size: 1.05rem;
             transition: border 0.3s;
         }
 
         .form-group input:focus, .form-group select:focus {
             outline: none;
-            border-color: var(--accent);
+            border-color: var(--primary-color);
         }
 
-        /* Floating WhatsApp Button */
+        /* Floating WhatsApp */
         .float-wa {
             position: fixed;
             bottom: 30px;
             left: 30px;
             background-color: #25d366;
             color: white;
-            padding: 15px 20px;
+            padding: 15px 25px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             z-index: 100;
             display: flex;
             align-items: center;
@@ -209,10 +264,9 @@
         }
 
         .float-wa:hover {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
-        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -229,10 +283,38 @@
 <body>
 
     <section class="hero">
+        <video autoplay muted loop playsinline class="video-bg">
+            <source src="bg-video.mp4" type="video/mp4">
+        </video>
+
         <div class="hero-content">
             <h1>الاستثمار في الشاشات الرديئة هو <span>تكلفة مضاعفة</span></h1>
-            <p>لا نخاطب الباحثين عن الحلول المؤقتة. نحن نقدم هندسة بصرية صارمة. توريد وتركيب شاشات العرض العملاقة بتقنية COB للفنادق والمراكز التجارية في مكة، برؤية تضمن العائد على الاستثمار.</p>
+            <p>لا نخاطب الباحثين عن الحلول المؤقتة. نحن نقدم هندسة بصرية صارمة. توريد وتركيب شاشات العرض العملاقة بتقنية COB للفنادق والمراكز التجارية في مكة.</p>
             <a href="#quote-form" class="btn">طلب عرض فني ومعاينة</a>
+        </div>
+    </section>
+
+    <section class="showcase">
+        <h2 class="section-title">مشاريع <span>تتحدث عن نفسها</span></h2>
+        <div class="video-grid">
+            <div class="video-card">
+                <video controls muted poster="poster1.jpg">
+                    <source src="restaurant-video.mp4" type="video/mp4">
+                </video>
+                <div class="info">
+                    <h4>قطاع المطاعم والمقاهي</h4>
+                    <p>تحديث لحظي لقوائم الطعام والعروض الترويجية بأعلى دقة.</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <video controls muted poster="poster2.jpg">
+                    <source src="corporate-video.mp4" type="video/mp4">
+                </video>
+                <div class="info">
+                    <h4>غرف التحكم والاجتماعات</h4>
+                    <p>شاشات داخلية بمسافة بكسل 1.53mm لاداء مؤسسي لا تشوبه شائبة.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -241,19 +323,19 @@
         <div class="grid">
             <div class="card">
                 <h3>دقة بصرية متناهية</h3>
-                <p>شاشات Vision-1.5COB64 بمسافة بكسل 1.53mm تضمن استقرار الصورة ووضوح التفاصيل المعقدة حتى من مسافة رؤية قريبة (1.5 متر).</p>
+                <p>شاشات Vision-1.5COB64 بمسافة بكسل 1.53mm تضمن استقرار الصورة ووضوح التفاصيل المعقدة حتى من مسافة قريبة.</p>
             </div>
             <div class="card">
                 <h3>تطابق هيكلي دقيق</h3>
-                <p>استخدام وحدات إضاءة (Modules) بأبعاد 16x32 سم لضمان التكامل الهيكلي للشاشة ومنع أي فواصل أو تشوهات بصرية عند التجميع.</p>
+                <p>استخدام وحدات إضاءة بأبعاد 16x32 سم لضمان التكامل الهيكلي للشاشة ومنع أي فواصل بصرية عند التجميع.</p>
             </div>
             <div class="card">
                 <h3>أداء ثابت تحت الضغط</h3>
-                <p>معدل تحديث يصل إلى 3840Hz، مما يقضي على الوميض (Flicker) تماماً أثناء البث المباشر أو التصوير بكاميرات الهواتف والشبكات التلفزيونية.</p>
+                <p>معدل تحديث 3840Hz يقضي على الوميض (Flicker) تماماً أثناء البث أو التصوير بكاميرات الهواتف.</p>
             </div>
             <div class="card">
-                <h3>اعتمادية التشغيل المتواصل</h3>
-                <p>عمر افتراضي تشغيلي يتجاوز 100,000 ساعة، مع حماية أمامية (IP54/IP65) مخصصة لتحمل بيئات العمل القاسية والتغيرات المناخية.</p>
+                <h3>اعتمادية التشغيل</h3>
+                <p>عمر افتراضي يتجاوز 100,000 ساعة، مع حماية أمامية (IP54/IP65) مخصصة لتحمل بيئات العمل القاسية.</p>
             </div>
         </div>
     </section>
@@ -261,7 +343,7 @@
     <section class="contact-section" id="quote-form">
         <h2 class="section-title">اطلب <span>المعاينة الميدانية</span></h2>
         <div class="form-container">
-            <p>املأ البيانات التقريبية لمشروعك، وسيقوم فريقنا الهندسي بالتواصل معك لترتيب زيارة ميدانية في مكة وتقديم دراسة التكلفة.</p>
+            <p>املأ البيانات التقريبية لمشروعك، وسيقوم فريقنا الهندسي بالتواصل معك لترتيب زيارة ميدانية في مكة.</p>
             <form id="leadForm">
                 <div class="form-group">
                     <label for="companyName">اسم الفندق / المشروع التجاري</label>
@@ -275,8 +357,8 @@
                     <label for="screenType">بيئة التشغيل</label>
                     <select id="screenType" required>
                         <option value="" disabled selected>اختر بيئة التركيب...</option>
-                        <option value="داخلية (Indoor - غرف تحكم، استقبال، مطاعم)">داخلية (Indoor)</option>
-                        <option value="خارجية (Outdoor - واجهات، ساحات)">خارجية (Outdoor)</option>
+                        <option value="داخلية (Indoor)">داخلية (Indoor)</option>
+                        <option value="خارجية (Outdoor)">خارجية (Outdoor)</option>
                     </select>
                 </div>
                 <button type="submit" class="btn" style="width: 100%; margin-top: 15px;">إرسال البيانات للتحليل الفني</button>
@@ -291,23 +373,14 @@
     <script>
         document.getElementById('leadForm').addEventListener('submit', function(e) {
             e.preventDefault(); 
-
-            // استخراج البيانات
             const companyName = document.getElementById('companyName').value.trim();
             const screenSize = document.getElementById('screenSize').value.trim();
             const screenType = document.getElementById('screenType').value;
-
-            // بناء الرسالة التحليلية
             const message = `أهلاً بك،\n\nبناءً على طلب المعاينة من موقعكم، هذه بيانات مشروعنا:\n\n🏢 الجهة: ${companyName}\n📐 المساحة المطلوبة: ${screenSize}\n⚙️ بيئة التشغيل: ${screenType}\n\nنرجو التواصل لمناقشة التفاصيل الهندسية وتحديد موعد للمعاينة في مكة.`;
-
-            // التشفير للرابط
             const encodedMessage = encodeURIComponent(message);
             const phoneNumber = "966568397048"; 
-
-            // التوجيه
             window.location.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
         });
     </script>
-
 </body>
 </html>
