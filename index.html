@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شاشات مكة المتقدمة | تكنولوجيا COB الهندسية</title>
+    <title>شاشات طارق النور | تكنولوجيا COB الهندسية بمكة</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #fbbf24; /* ذهبي فخم */
-            --bg-dark: #0a1128; /* كحلي ملكي */
+            --primary: #fbbf24; /* ذهبي ملكي */
+            --bg-dark: #0a1128; /* كحلي فاخر */
             --bg-card: #16213e;
             --text: #ffffff;
             --muted: #94a3b8;
@@ -20,97 +20,122 @@
         /* Hero Section */
         .hero { position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; border-bottom: 4px solid var(--primary); }
         .hero-video { position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0.4; z-index: 0; }
-        .hero-content { z-index: 1; text-align: center; background: rgba(10, 17, 40, 0.7); padding: 40px; border-radius: 20px; backdrop-filter: blur(8px); border: 1px solid rgba(251, 191, 36, 0.3); max-width: 800px; margin: 20px; }
+        .hero-content { z-index: 1; text-align: center; background: rgba(10, 17, 40, 0.7); padding: 40px; border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(251, 191, 36, 0.3); max-width: 800px; margin: 20px; }
         .hero h1 { font-size: 3rem; font-weight: 900; margin-bottom: 20px; color: var(--primary); }
 
-        /* Video Gallery */
+        /* General Sections */
         .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
         .title { text-align: center; font-size: 2.5rem; margin-bottom: 50px; }
         .title span { color: var(--primary); }
+
+        /* Video Showcase */
         .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .v-card { background: var(--bg-card); border-radius: 15px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+        .v-card { background: var(--bg-card); border-radius: 15px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.4); transition: transform 0.3s; }
+        .v-card:hover { transform: translateY(-10px); }
         .v-card video { width: 100%; display: block; }
-        .v-card-body { padding: 20px; text-align: center; }
+        .v-card-body { padding: 25px; text-align: center; }
+        .v-card h3 { color: var(--primary); margin-bottom: 10px; }
 
-        /* High Precision Image Section */
+        /* Precision Image Section */
         .precision-showcase { background: #0f172a; padding: 60px 20px; border-radius: 20px; margin: 40px auto; border: 1px solid var(--primary); text-align: center; }
-        .precision-img { width: 100%; max-width: 900px; border-radius: 10px; margin-top: 20px; box-shadow: 0 0 40px rgba(251, 191, 36, 0.2); }
+        .precision-img { width: 100%; max-width: 900px; border-radius: 10px; margin-top: 30px; box-shadow: 0 0 50px rgba(251, 191, 36, 0.2); }
 
-        /* Specs Cards */
+        /* Technical Specs */
         .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
         .s-card { background: var(--bg-card); padding: 30px; border-radius: 15px; border-right: 5px solid var(--primary); }
+        .s-card h4 { color: var(--primary); margin-bottom: 10px; }
 
-        /* Contact Form */
-        .contact-form { max-width: 600px; margin: 0 auto; background: var(--bg-card); padding: 40px; border-radius: 20px; }
-        input, select, textarea { width: 100%; padding: 15px; margin-bottom: 20px; background: #0a1128; border: 1px solid #1e293b; color: white; border-radius: 8px; }
-        .btn { background: var(--primary); color: #0a1128; padding: 15px 40px; border: none; border-radius: 8px; font-weight: 900; cursor: pointer; width: 100%; font-size: 1.1rem; }
+        /* Lead Form */
+        .contact-form { max-width: 600px; margin: 0 auto; background: var(--bg-card); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); }
+        input, select { width: 100%; padding: 15px; margin-bottom: 20px; background: #0a1128; border: 1px solid #1e293b; color: white; border-radius: 8px; font-size: 1rem; }
+        .btn-submit { background: var(--primary); color: #0a1128; padding: 18px; border: none; border-radius: 8px; font-weight: 900; cursor: pointer; width: 100%; font-size: 1.2rem; transition: background 0.3s; }
+        .btn-submit:hover { background: #eab308; }
 
-        /* WhatsApp Button */
-        .wa-float { position: fixed; bottom: 30px; left: 30px; background: #25d366; color: white; padding: 15px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; z-index: 1000; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        /* Floating WhatsApp */
+        .wa-float { position: fixed; bottom: 30px; left: 30px; background: #25d366; color: white; padding: 15px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; z-index: 1000; box-shadow: 0 10px 20px rgba(0,0,0,0.4); display: flex; align-items: center; gap: 10px; transition: transform 0.3s; }
+        .wa-float:hover { transform: scale(1.1); }
 
-        @media (max-width: 768px) { .hero h1 { font-size: 2rem; } }
+        @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } .title { font-size: 1.8rem; } }
     </style>
 </head>
 <body>
 
     <section class="hero">
-        <video autoplay muted loop playsinline class="hero-video">
+        <video autoplay muted loop playsinline poster="bg-poster.png" class="hero-video">
             <source src="bg.mp4" type="video/mp4">
         </video>
         <div class="hero-content">
             <h1>شاشات LED مكة</h1>
-            <p>حلول هندسية فائقة الدقة بنظام COB للفنادق والمشاريع الكبرى. جودة تتحدى المسافات وتخطف الأنظار.</p>
-            <a href="#order" class="btn" style="margin-top: 20px; display: inline-block; width: auto;">اطلب معاينة هندسية الآن</a>
+            <p>نحن لا نبيع شاشات، نحن نصمم تجارب بصرية فائقة الدقة بنظام COB للفنادق والمشاريع التجارية الكبرى بمكة المكرمة.</p>
+            <a href="#order" class="btn-submit" style="margin-top: 25px; display: inline-block; width: auto; text-decoration: none; padding: 15px 40px;">اطلب معاينة هندسية الآن</a>
         </div>
     </section>
 
     <section class="section">
-        <h2 class="title">مشاريع <span>تم تنفيذها</span></h2>
+        <h2 class="title">سابقة أعمال <span>تتحدث عن نفسها</span></h2>
         <div class="video-grid">
             <div class="v-card">
                 <video controls poster="res-poster.png"><source src="res.mp4" type="video/mp4"></video>
-                <div class="v-card-body"><h3>مطعم الشرفة - مكة</h3><p>أداء لوني مبهر في أرقى مواقع العاصمة المقدسة.</p></div>
+                <div class="v-card-body">
+                    <h3>قطاع الضيافة الراقية</h3>
+                    <p>نموذج تنفيذ في أرقى مطاعم مكة، حيث تندمج التكنولوجيا مع فخامة الديكور.</p>
+                </div>
             </div>
             <div class="v-card">
                 <video controls><source src="corp.mp4" type="video/mp4"></video>
-                <div class="v-card-body"><h3>MAS LED - شركات</h3><p>دقة 1.5mm لبيئات العمل الاحترافية.</p></div>
+                <div class="v-card-body">
+                    <h3>أنظمة العرض المؤسسي</h3>
+                    <p>دقة 1.53mm مخصصة لغرف التحكم والاجتماعات لضمان وضوح البيانات والنصوص.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <section class="section">
         <div class="precision-showcase">
-            <h2>دقة <span>مجهرية</span> في التصنيع</h2>
-            <p>لقطة حقيقية تُظهر جودة الألوان والنعومة في "جمعية الجوار" بمكة المكرمة.</p>
-            <img src="image_0.png" class="precision-img" alt="جمعية الجوار مكة">
+            <h2>دقة <span>هندسية</span> متناهية</h2>
+            <p>استخدام وحدات (Modules) بمقاس 16×32 سم لضمان تطابق هندسي مثالي بدون أي فواصل بصرية.</p>
+            <img src="image_0.png" class="precision-img" alt="دقة تنفيذ شاشات طارق النور">
         </div>
     </section>
 
     <section class="section">
-        <h2 class="title">المواصفات <span>التقنية</span></h2>
+        <h2 class="title">المواصفات <span>التقنية الصارمة</span></h2>
         <div class="specs-grid">
-            <div class="s-card"><h4>تقنية COB</h4><p>حماية IP65 متكاملة ضد الغبار والصدمات مع نعومة بصرية فائقة.</p></div>
-            <div class="s-card"><h4>3840Hz</h4><p>معدل تحديث يمنع أي وميض عند التصوير بكاميرات الجوال.</p></div>
-            <div class="s-card"><h4>+100k ساعة</h4><p>عمر افتراضي طويل يضمن استدامة استثمارك لسنوات طويلة.</p></div>
+            <div class="s-card">
+                <h4>نظام COB المتطور</h4>
+                <p>حماية متكاملة IP65 ضد الغبار والصدمات مع نعومة بصرية تريح العين في المشاهدة القريبة.</p>
+            </div>
+            <div class="s-card">
+                <h4>تحديث فائق 3840Hz</h4>
+                <p>صورة ثابتة تماماً وخالية من الوميض، مثالية للتصوير بكاميرات الجوال والبث المباشر.</p>
+            </div>
+            <div class="s-card">
+                <h4>وحدات 16x32 سم</h4>
+                <p>أبعاد قياسية دقيقة تضمن سهولة الصيانة وتكامل الهيكل المعدني للشاشة بنسبة 100%.</p>
+            </div>
         </div>
     </section>
 
     <section class="section" id="order">
-        <h2 class="title">اطلب <span>عرض سعر</span></h2>
+        <h2 class="title">خطوتك القادمة لـ <span>التميز</span></h2>
         <div class="contact-form">
+            <p style="text-align: center; margin-bottom: 30px; color: var(--muted);">سجل بيانات مشروعك وسنقوم بترتيب موعد للمعاينة الفنية بمكة.</p>
             <form id="waForm">
                 <input type="text" id="name" placeholder="اسم المشروع / الفندق" required>
-                <input type="text" id="size" placeholder="الأبعاد المطلوبة (عرض × ارتفاع)" required>
+                <input type="text" id="size" placeholder="المساحة التقريبية (مثلاً 4×3 متر)" required>
                 <select id="type">
                     <option value="داخلية">شاشات داخلية (Indoor)</option>
                     <option value="خارجية">شاشات خارجية (Outdoor)</option>
                 </select>
-                <button type="submit" class="btn">إرسال عبر واتساب</button>
+                <button type="submit" class="btn-submit">إرسال لترتيب موعد المعاينة</button>
             </form>
         </div>
     </section>
 
-    <a href="https://wa.me/966568397048" class="wa-float">💬 تواصل مباشر</a>
+    <a href="https://wa.me/966568397048" class="wa-float">
+        <span>💬 تواصل مباشر</span>
+    </a>
 
     <script>
         document.getElementById('waForm').addEventListener('submit', function(e) {
@@ -118,7 +143,7 @@
             const name = document.getElementById('name').value;
             const size = document.getElementById('size').value;
             const type = document.getElementById('type').value;
-            const msg = `أهلاً، أرغب في استشارة هندسية لمشروع:\n🏢 الجهة: ${name}\n📐 القياس: ${size}\n⚙️ النوع: ${type}`;
+            const msg = `أهلاً طارق النور، أرغب في ترتيب موعد معاينة هندسية لمشروع بمكة:\n\n🏢 الجهة: ${name}\n📐 المساحة: ${size}\n⚙️ النوع: ${type}`;
             window.location.href = `https://wa.me/966568397048?text=${encodeURIComponent(msg)}`;
         });
     </script>
